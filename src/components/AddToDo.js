@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import db from '../services/dbService.js';
+import saveTodoDB from '../services/dbService.js';
 
 class AddToDo extends Component {
   constructor(props) {
@@ -17,15 +17,16 @@ class AddToDo extends Component {
     this.setState({ day: e.target.value });
   }
 
-  submitTodo(e) {
+  async submitTodo(e) {
     e.preventDefault();
-    db.saveTodoDB({ todo: this.state.todo, day: this.state.day });
+    await saveTodoDB({ todo: this.state.todo, day: this.state.day });
+    this.setState({ todo: '' });
   }
 
   render() {
     return (
       <form onSubmit={(e) => this.submitTodo(e)}>
-        <input type="text" onChange={(e) => this.inputTodo(e)}></input>
+        <input type="text" onChange={(e) => this.inputTodo(e)} value={this.state.todo}></input>
         <input type="submit" value="Submit"></input>
       </form>
     );

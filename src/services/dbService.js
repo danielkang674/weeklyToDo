@@ -1,19 +1,19 @@
 import dbUrl from '../config.js';
 
-const db = {
-
-  saveTodoDB: (data) => {
-    let str = JSON.stringify(data);
-    console.log(str);
-    return fetch(`${dbUrl}/db/saveTodo`, {
+const saveTodoDB = async (data) => {
+  try {
+    const response = await fetch(`${dbUrl}/db/saveTodo`, {
       method: 'POST',
       mode: 'cors',
-      body: str,
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'
       }
-    }).catch(console.log);
+    });
+    console.log(response);
+  } catch (err) {
+    console.log(err);
   }
 }
 
-export default db;
+export default saveTodoDB;
