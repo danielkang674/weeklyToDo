@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Day from './components/Day';
-import AddToDo from './components/AddToDo';
+// import dbUrl, { test, testfunc } from './config.js';
+// console.log(dbUrl, test, testfunc);
 
 class App extends Component {
   constructor() {
@@ -15,8 +16,13 @@ class App extends Component {
         <header className="App-header">
           Weekly Planner
         </header>
-        <AddToDo></AddToDo>
-        <Day></Day>
+        <Day day="Monday"></Day>
+        <Day day="Tuesday"></Day>
+        <Day day="Wednesday"></Day>
+        <Day day="Thursday"></Day>
+        <Day day="Friday"></Day>
+        <Day day="Saturday"></Day>
+        <Day day="Sunday"></Day>
         <img src={logo} className="App-logo" alt="logo" />
       </div>
     );
