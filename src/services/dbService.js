@@ -1,6 +1,6 @@
 import dbUrl from '../config.js';
 
-const saveTodoDB = async (data) => {
+const saveTodoDbService = async (data) => {
   try {
     const response = await fetch(`${dbUrl}/db/saveTodo`, {
       method: 'POST',
@@ -10,10 +10,21 @@ const saveTodoDB = async (data) => {
         'Content-Type': 'application/json'
       }
     });
-    console.log(response);
   } catch (err) {
     console.log(err);
   }
-}
+};
 
-export default saveTodoDB;
+export const getTodoDbService = async (day) => {
+  try {
+    const todos = await fetch(`${dbUrl}/db/getTodo?day=${day}`, {
+      method: 'GET',
+      mode: 'cors'
+    });
+    return todos.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export default saveTodoDbService;

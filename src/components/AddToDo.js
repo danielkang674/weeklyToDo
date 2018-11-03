@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import saveTodoDB from '../services/dbService.js';
+import saveTodoDbService from '../services/dbService.js';
 
 class AddToDo extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class AddToDo extends Component {
 
   async submitTodo(e) {
     e.preventDefault();
-    await saveTodoDB({ todo: this.state.todo, day: this.state.day });
+    await saveTodoDbService({ todo: this.state.todo, day: this.state.day });
     this.setState({ todo: '' });
   }
 
