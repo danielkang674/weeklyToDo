@@ -17,9 +17,11 @@ class Day extends Component {
     const items = this.state.todos.length > 0 ? this.state.todos[0].item : ''
     return (
       <div>
+
         <h1 onClick={() => this.getTodoFromDB(this.props.day)}>{this.props.day}</h1>
-        {this.state.todos.map(todo => <div>{todo.item}</div>)}
         <AddToDo day={this.props.day}></AddToDo>
+        {this.state.todos.map(todo => <div>{todo.item}</div>)}
+
       </div>
     );
   }
