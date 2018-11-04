@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddToDo from './AddToDo';
 import { getTodoDbService } from '../services/dbService.js';
+import Todo from './Todo';
 
 class Day extends Component {
   constructor(props) {
@@ -10,18 +11,25 @@ class Day extends Component {
 
   async getTodoFromDB(day) {
     const todos = await getTodoDbService(day);
-    this.setState({ todos }, () => console.log(this.state.todos));
+    this.setState({ todos }, () => this.props.changeCurrDay(this.props.day));
+  }
+
+  renderTodosAndInput() {
+    if (this.props.day === this.props.currDay) {
+      return (
+        <>
+          <AddToDo day={this.props.day}></AddToDo>
+          {this.state.todos.map(todo => <Todo item={todo.item} key={todo.id}></Todo>)}
+        </>
+      );
+    }
   }
 
   render() {
-    const items = this.state.todos.length > 0 ? this.state.todos[0].item : ''
     return (
       <div>
-
         <h1 onClick={() => this.getTodoFromDB(this.props.day)}>{this.props.day}</h1>
-        <AddToDo day={this.props.day}></AddToDo>
-        {this.state.todos.map(todo => <div>{todo.item}</div>)}
-
+        {this.renderTodosAndInput()}
       </div>
     );
   }
