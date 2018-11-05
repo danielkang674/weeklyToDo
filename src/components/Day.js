@@ -7,6 +7,7 @@ class Day extends Component {
   constructor(props) {
     super(props);
     this.state = { todos: [] }
+    this.getTodoFromDB = this.getTodoFromDB.bind(this);
   }
 
   async getTodoFromDB(day) {
@@ -14,11 +15,11 @@ class Day extends Component {
     this.setState({ todos }, () => this.props.changeCurrDay(this.props.day));
   }
 
-  renderTodosAndInput() {
-    if (this.props.day === this.props.currDay) {
+  renderTodosAndInput(day, currDay) {
+    if (day === currDay) {
       return (
         <>
-          <AddToDo day={this.props.day}></AddToDo>
+          <AddToDo day={day} getTodoFromDB={this.getTodoFromDB}></AddToDo>
           {this.state.todos.map(todo => <Todo item={todo.item} key={todo.id}></Todo>)}
         </>
       );
@@ -26,10 +27,11 @@ class Day extends Component {
   }
 
   render() {
+    const { day, currDay } = this.props;
     return (
       <div>
         <h1 onClick={() => this.getTodoFromDB(this.props.day)}>{this.props.day}</h1>
-        {this.renderTodosAndInput()}
+        {this.renderTodosAndInput(day, currDay)}
       </div>
     );
   }
