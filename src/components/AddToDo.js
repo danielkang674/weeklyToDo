@@ -20,7 +20,7 @@ class AddToDo extends Component {
   async submitTodo(e) {
     e.preventDefault();
     await saveTodoDbService({ todo: this.state.todo, day: this.state.day });
-    this.setState({ todo: '' }, () => this.props.getTodoFromDB());
+    this.setState({ todo: '' }, () => this.props.getTodoFromDB(this.state.day));
   }
 
   render() {
