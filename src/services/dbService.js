@@ -15,6 +15,21 @@ const saveTodoDbService = async (data) => {
   }
 };
 
+export const deleteTodoService = async (id) => {
+  try {
+    const response = await fetch(`${dbUrl}/db/deleteTodo`, {
+      method: 'DELETE',
+      mode: 'cors',
+      body: JSON.stringify({ id }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const getTodoDbService = async (day) => {
   try {
     const todos = await fetch(`${dbUrl}/db/getTodo?day=${day}`, {

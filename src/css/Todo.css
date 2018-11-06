@@ -2,3 +2,7 @@
   animation: App-logo-spin infinite 20s linear;
   height: 4vmin;
 }
+
+.item{
+  margin-right: 10px;
+}
